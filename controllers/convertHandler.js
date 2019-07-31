@@ -70,7 +70,8 @@ function ConvertHandler() {
     return Math.round(initNum * converter[initUnit.toLowerCase()] * 10**5) / 10**5;
   };
   
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
+  this.getString = function(input) {
+    const { initNum, initUnit, returnNum, returnUnit } = input;
     return `${initNum} ${this.spellOutUnit(initUnit)}s converts to ${returnNum} ${this.spellOutUnit(returnUnit)}s`;
   };
   

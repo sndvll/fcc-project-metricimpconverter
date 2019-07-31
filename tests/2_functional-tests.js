@@ -45,26 +45,42 @@ suite('Functional Tests', function() {
         });
       });
       
-      test('Convert  (invalid number)', function(done) {
+      test('Convert 3/7.2/4kg (invalid number)', function(done) {
         chai.request(server)
-          .get('api/convert')
+          .get('/api/convert')
           .query({input: '3/7.2/4kg'})
           .end(function(err, res) {
             assert.equal(res.status, 200);
-            assert.equal(res.body.initNum, 'invald');
+            assert.equal(res.body.initNum, 'invalid');
             assert.equal(res.body.initUnit, 'kg');
             done();
-        })
+        });
       });  
       
       test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function(done) {
-        
-        //done();
+        chai.request(server)
+          .get('/api/convert')
+          .query({input: '3/7.2/4kilomegagram'})
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.body.initNum, 'invalid');
+            assert.equal(res.body.initUnit, 'invalid');
+            done();
+        });
       });
       
       test('Convert kg (no number)', function(done) {
-        
-        //done();
+        chai.request(server)
+          .get('/api/convert')
+          .query({input: 'kg'})
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.body.initNum, 1);
+            assert.equal(res.body.initUnit, 'kg')
+            assert.approximately(res.body.returnNum, 2.20462, 0.1);
+            assert.equal(res.body.returnUnit, 'lbs');
+            done();
+        });
       });
       
     });
