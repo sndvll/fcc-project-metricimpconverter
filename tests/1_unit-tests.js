@@ -99,30 +99,29 @@ suite('Unit Tests', function(){
     });
     
     test('L to Gal', function(done) {
-      assert.approximately(convertHandler.convert(1, 'l'), 0.264172, 0.1);
+      assert.approximately(convertHandler.convert(1, 'l'), 0.26417, 0.1);
       done();
     });
     
     test('Mi to Km', function(done) {
-      assert.approximately(convertHandler.convert(1, 'mi'), 1.609344,0.1);
+      assert.approximately(convertHandler.convert(1, 'mi'), 1.60934, 0.1);
       done();
     });
     
     test('Km to Mi', function(done) {
-      assert.approximately(convertHandler.convert(10, 'km'), 6.213711,0.1);
+      assert.approximately(convertHandler.convert(1, 'km'), 0.62137, 0.1);
       done();
     });
     
     test('Lbs to Kg', function(done) {
-      
-      //done();
+      assert.approximately(convertHandler.convert(1, 'lbs'), 0.45359, 0.1);
+      done();
     });
     
     test('Kg to Lbs', function(done) {
-      
-      //done();
+      assert.approximately(convertHandler.convert(1, 'Kg'), 2.20462, 0.1)
+      done();
     });
-    
   });
 
 });

@@ -63,6 +63,7 @@ function ConvertHandler() {
       gal: galToL,
       l: 1 / galToL,
       mi: miToKm,
+      km: 1 / miToKm,
       lbs: lbsToKg,
       kg: 1 / lbsToKg
     };    
