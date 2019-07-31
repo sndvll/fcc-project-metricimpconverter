@@ -17,11 +17,8 @@ function ConvertHandler() {
     if(index == 0) {
       return 1;
     }
-    let result = input.slice(0, index);
+    const result = input.slice(0, index);
     const secFraction = result.indexOf('/', result.indexOf('/') + 1);
-    if() {
-      result = 'invalid';
-    }
     return secFraction > 0 ? 'invalid' : result;
   };
   
@@ -32,20 +29,29 @@ function ConvertHandler() {
       return 'invalid'
     }
     const unit = input.slice(index);
-    
-    return result;
+    return units.includes(unit) ? unit : 'invalid';
   };
   
-  this.getReturnUnit = function(initUnit) {
-    var result;
-    
-    return result;
+  this.getReturnUnit = function(initUnit) {    
+    return {
+      gal: 'l',
+      l: 'gal',
+      mi: 'km',
+      km: 'mi',
+      lbs: 'kg',
+      kg: 'lbs'
+    }[initUnit.toLowerCase()];
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
-    
-    return result;
+    return {
+      gal: 'gallon',
+      l: 'liter',
+      mi: 'mile',
+      km: 'kilometer',
+      lbs: 'pound',
+      kg: 'kilometer'
+    }[unit.toLowerCase()];
   };
   
   this.convert = function(initNum, initUnit) {
