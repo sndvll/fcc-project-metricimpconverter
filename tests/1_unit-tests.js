@@ -6,30 +6,32 @@
 *       (if additional are added, keep them at the very end!)
 */
 
-var chai = require('chai');
-var assert = chai.assert;
-var ConvertHandler = require('../controllers/convertHandler.js');
+const chai = require('chai');
+const assert = chai.assert;
+const ConvertHandler = require('../controllers/convertHandler.js');
 
-var convertHandler = new ConvertHandler();
+const convertHandler = new ConvertHandler();
 
 suite('Unit Tests', function(){
   
   suite('Function convertHandler.getNum(input)', function() {
     
     test('Whole number input', function(done) {
-      var input = '32L';
+      const input = '32L';
       assert.equal(convertHandler.getNum(input),32);
       done();
     });
     
     test('Decimal Input', function(done) {
-      
-      //done();
+      const input = '5.5L';
+      assert.equal(convertHandler.getNum(input), 5.5);
+      done();
     });
     
     test('Fractional Input', function(done) {
-      
-      //done();
+      const input = '54/2L';
+      assert.equal(convertHandler.getNum(input), '54/2');
+      done();
     });
     
     test('Fractional Input w/ Decimal', function(done) {
