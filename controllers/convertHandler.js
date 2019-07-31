@@ -8,13 +8,20 @@
 
 function ConvertHandler() {
   
-  const firstLetterIndex = (input) => {
+  const getFirstLetterIndex = (input) => {
     return input.indexOf(input.match(/[a-zA-Z]/));
   }
   
   this.getNum = function(input) {
-    var result;
-    
+    const index = getFirstLetterIndex(input);
+    if(index == 0) {
+      return 1;
+    }
+    let result = input.slice(0, index);
+    const secFraction = result.indexOf('/', result.indexOf('/') + 1);
+    if(secFraction > 0) {
+      result = 'invalid input';
+    }
     return result;
   };
   
