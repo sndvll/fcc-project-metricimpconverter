@@ -16,30 +16,36 @@ module.exports = function (app) {
   const convertHandler = new ConvertHandler();
   
   const middleWare = (req, res, next) => {
-      const input = req.query.input,
-      initNum = convertHandler.getNum(input),
-      initUnit = convertHandler.getUnit(input);
-    
+      res.body = {};
       res.body = {
-        initNum: convertHandler.getNum(input),
-        initUnit: convertHandler.getUnit(input)
+        initNum: convertHandler.getNum(req.query.input),
+        initUnit: convertHandler.getUnit(req.query.input)
       };
     
       if(res.body.initNum !== 'invalid input' && res.body.initUnit !== 'invalid input') {
-              var returnNum = convertHandler.convert(initNum, initUnit);
-      var returnUnit = convertHandler.getReturnUnit(initUnit);
-      var toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
-      
+        const { initNum, initUnit } = res.body;
+        res.body.returnNum = convertHandler.convert(initNum, initUnit);
+        res.body.returnUnit = convertHandler.getReturnUnit(res.body.initUnit);
+        const { returnNum, returnUnit } = res.body;
+        res.body.string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
       }
+    next();
   }
 
   app.route('/api/convert')
     .get(middleWare, (req, res) => {
-      
-    
-    
-
-      //res.json
+      let response;
+      console.log(res.body);
+      if(res.body.initNum === 'invalid input' && res.body.initUnit === 'invalid input') {
+        response = Object.assign({}, res.body, { string: 'invalid number and unit' });
+      } else if (res.body.initNum === 'invalid input') {
+        response = Object.assign({}, res.body, { string: 'ivalid number' });
+      } else if (res.body.initUnit === 'invalid input') {
+        response = Object.assign({}, res.body, { string: 'invalid unit' });
+      } else {
+        response = res.body;
+      }
+      res.json(response);
     });
     
 };
