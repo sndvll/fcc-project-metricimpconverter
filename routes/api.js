@@ -25,7 +25,7 @@ module.exports = function (app) {
       if(res.body.initNum !== 'invalid input' && res.body.initUnit !== 'invalid input') {
         const { initNum, initUnit } = res.body;
         res.body.returnNum = convertHandler.convert(initNum, initUnit);
-        res.body.returnUnit = convertHandler.getReturnUnit(res.body.initUnit);
+        res.body.returnUnit = convertHandler.getReturnUnit(initUnit);
         const { returnNum, returnUnit } = res.body;
         res.body.string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
       }
@@ -34,25 +34,29 @@ module.exports = function (app) {
 
   app.route('/api/convert')
     .get(middleWare, (req, res) => {
-      let response;
-      console.log('body', res.body);
-      if(res.body.initNum === 'invalid input' && res.body.initUnit === 'invalid input') {
-        response = {...res.body, string: 'invalid number and unit' };
-      } else if (res.body.initNum === 'invalid input') {
-        response = {...res.body, string: 'ivalid number' };
-      } else if (res.body.initUnit === 'invalid input') {
-        response = {...res.body, string: 'invalid unit' };
-      } else {
-        response = {
-          initNum: res.body.initNum,
-          initUnit: res.body.initUnit,
-          returnNum: res.body.returnNum,
-          returnUnit: res.body.returnUnit,
-          string: res.body.string
+      try {
+        let response;
+        console.log('body', res.body);
+        if(res.body.initNum === 'invalid input' && res.body.initUnit === 'invalid input') {
+          response = { ...res.body, string: 'invalid number and unit' };
+        } else if (res.body.initNum === 'invalid input') {
+          response = { ...res.body, string: 'ivalid number' };
+        } else if (res.body.initUnit === 'invalid input') {
+          response = { ...res.body, string: 'invalid unit' };
+        } else {
+          response = {
+            initNum: res.body.initNum,
+            initUnit: res.body.initUnit,
+            returnNum: res.body.returnNum,
+            returnUnit: res.body.returnUnit,
+            string: res.body.string
+          }
         }
+        console.log('response',response);
+        res.status(200).json(response);
+      } catch (err) {
+        console.log(err)
       }
-      console.log('response',response);
-      res.status(200).json(response);
     });
     
 };

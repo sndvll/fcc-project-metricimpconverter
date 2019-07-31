@@ -38,7 +38,6 @@ suite('Functional Tests', function() {
           .get('/api/convert')
           .query({input: '32g'})
           .end(function(err, res){
-            console.log('res', res.body);
             assert.equal(res.status, 200);
             assert.equal(res.body.initNum, 32);
             assert.equal(res.body.initUnit, 'invalid input');
