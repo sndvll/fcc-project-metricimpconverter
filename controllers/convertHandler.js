@@ -8,6 +8,10 @@
 
 function ConvertHandler() {
   
+  const firstLetterIndex = (input) => {
+    return input.indexOf(input.match(/[a-zA-Z]/));
+  }
+  
   this.getNum = function(input) {
     var result;
     
