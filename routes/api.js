@@ -27,6 +27,7 @@ module.exports = function (app) {
         res.body.returnUnit = convertHandler.getReturnUnit(res.body.initUnit);
         res.body.string = convertHandler.getString(res.body);
       }
+      console.log('returnNum', res.body.returnNum);
     next();
   }
 
