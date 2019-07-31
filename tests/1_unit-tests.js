@@ -119,7 +119,7 @@ suite('Unit Tests', function(){
     });
     
     test('Kg to Lbs', function(done) {
-      assert.approximately(convertHandler.convert(1, 'Kg'), 2.20462, 0.1)
+      assert.approximately(convertHandler.convert(1, 'kg'), 2.20462, 0.1);
       done();
     });
   });
