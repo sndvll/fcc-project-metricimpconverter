@@ -50,7 +50,7 @@ function ConvertHandler() {
       mi: 'mile',
       km: 'kilometer',
       lbs: 'pound',
-      kg: 'kilometer'
+      kg: 'kilogram'
     }[unit.toLowerCase()];
   };
   
@@ -58,9 +58,15 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    var result;
     
-    return result;
+    const converter = {
+      gal: galToL,
+      l: 1 / galToL,
+      mi: miToKm,
+      lbs: lbsToKg,
+      kg: 1 / lbsToKg
+    };    
+    return Math.round(initNum * converter[initUnit.toLowerCase()] * 10**5) / 10**5;
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {

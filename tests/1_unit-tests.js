@@ -92,25 +92,25 @@ suite('Unit Tests', function(){
   suite('Function convertHandler.convert(num, unit)', function() {
     
     test('Gal to L', function(done) {
-      var input = [5, 'gal'];
-      var expected = 18.9271;
+      const input = [5, 'gal'];
+      const expected = 18.9271;
       assert.approximately(convertHandler.convert(input[0],input[1]),expected,0.1); //0.1 tolerance
       done();
     });
     
     test('L to Gal', function(done) {
-      
-      //done();
+      assert.approximately(convertHandler.convert(1, 'l'), 0.264172, 0.1);
+      done();
     });
     
     test('Mi to Km', function(done) {
-      
-      //done();
+      assert.approximately(convertHandler.convert(1, 'mi'), 1.609344,0.1);
+      done();
     });
     
     test('Km to Mi', function(done) {
-      
-      //done();
+      assert.approximately(convertHandler.convert(10, 'km'), 6.213711,0.1);
+      done();
     });
     
     test('Lbs to Kg', function(done) {
