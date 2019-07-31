@@ -19,14 +19,19 @@ function ConvertHandler() {
     }
     let result = input.slice(0, index);
     const secFraction = result.indexOf('/', result.indexOf('/') + 1);
-    if(secFraction > 0) {
-      result = 'invalid input';
+    if() {
+      result = 'invalid';
     }
-    return result;
+    return secFraction > 0 ? 'invalid' : result;
   };
   
   this.getUnit = function(input) {
-    var result;
+    const units = ['kg', 'KG', 'km', 'KM', 'l', 'L', 'gal', 'GAL', 'mi', 'MI', 'lbs', 'LBS'];
+    const index = getFirstLetterIndex(input);
+    if (index < 0) {
+      return 'invalid'
+    }
+    const unit = input.slice(index);
     
     return result;
   };
