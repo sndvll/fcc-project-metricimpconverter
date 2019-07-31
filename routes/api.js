@@ -35,17 +35,24 @@ module.exports = function (app) {
   app.route('/api/convert')
     .get(middleWare, (req, res) => {
       let response;
-      console.log(res.body);
+      console.log('body', res.body);
       if(res.body.initNum === 'invalid input' && res.body.initUnit === 'invalid input') {
-        response = Object.assign({}, res.body, { string: 'invalid number and unit' });
+        response = {...res.body, string: 'invalid number and unit' };
       } else if (res.body.initNum === 'invalid input') {
-        response = Object.assign({}, res.body, { string: 'ivalid number' });
+        response = {...res.body, string: 'ivalid number' };
       } else if (res.body.initUnit === 'invalid input') {
-        response = Object.assign({}, res.body, { string: 'invalid unit' });
+        response = {...res.body, string: 'invalid unit' };
       } else {
-        response = res.body;
+        response = {
+          initNum: res.body.initNum,
+          initUnit: res.body.initUnit,
+          returnNum: res.body.returnNum,
+          returnUnit: res.body.returnUnit,
+          string: res.body.string
+        }
       }
-      res.json(response);
+      console.log('response',response);
+      res.status(200).json(response);
     });
     
 };
