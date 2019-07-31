@@ -22,7 +22,7 @@ module.exports = function (app) {
         initUnit: convertHandler.getUnit(req.query.input)
       };
     
-      if(res.body.initNum !== 'invalid input' && res.body.initUnit !== 'invalid input') {
+      if(res.body.initNum !== 'invalid' && res.body.initUnit !== 'invalid') {
         const { initNum, initUnit } = res.body;
         res.body.returnNum = convertHandler.convert(initNum, initUnit);
         res.body.returnUnit = convertHandler.getReturnUnit(initUnit);
@@ -37,11 +37,11 @@ module.exports = function (app) {
       try {
         let response;
         console.log('body', res.body);
-        if(res.body.initNum === 'invalid input' && res.body.initUnit === 'invalid input') {
+        if(res.body.initNum === 'invalid' && res.body.initUnit === 'invalid') {
           response = { ...res.body, string: 'invalid number and unit' };
-        } else if (res.body.initNum === 'invalid input') {
+        } else if (res.body.initNum === 'invalid') {
           response = { ...res.body, string: 'ivalid number' };
-        } else if (res.body.initUnit === 'invalid input') {
+        } else if (res.body.initUnit === 'invalid') {
           response = { ...res.body, string: 'invalid unit' };
         } else {
           response = {
